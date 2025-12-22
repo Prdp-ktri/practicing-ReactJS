@@ -1,10 +1,26 @@
 import React from "react";
 
-function PriceDiscount() {
+function PriceDiscount({ price, discountedPrice }) {
   return (
     <div>
-      <label htmlFor="price">Price:</label>
-      <p>₹1500</p>
+      <div id="product">
+        <img
+          src="/classmate-hook-pen.jpg"
+          style={{ width: "400px", height: "400px" }}
+          alt=""
+        />
+        {discountedPrice ? (
+          <>
+            <h3>
+              {" "}
+              MRP: <strike>{price}</strike>
+            </h3>
+            <h1>Selling Price: ₹{discountedPrice}</h1>
+          </>
+        ) : (
+          <h1>Selling Price: ₹{price}</h1>
+        )}
+      </div>
     </div>
   );
 }
