@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import "./App.css";
 import Header from "./Header";
 import Product from "./Product";
@@ -10,11 +10,15 @@ function App() {
     setCartCount((prev) => prev + 1);
   };
 
+  const LazyComponent = lazy(() => import("./LazyComponent.jsx"));
+
   return (
     <>
-      <div>
-        <Header cartCount={cartCount} />
-        <Product addToCart={addToCart} />
+      <div className="App">
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header cartCount={cartCount} />
+          <Product addToCart={addToCart} />
+        </Suspense>
       </div>
     </>
   );
